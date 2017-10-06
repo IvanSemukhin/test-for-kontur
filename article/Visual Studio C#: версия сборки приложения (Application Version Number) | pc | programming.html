@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" lang="ru-ru"><head>
+  
+  <!-- base href="http://microsin.net/programming/pc/c-sharp-application-version-number.html" -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Visual Studio, C#, version, major, minor, build, revision, Assembly. AssemblyVersion">
+  
+  <meta name="author" content="microsin">
+  <meta name="description" content="Как получить доступ к версии компилируемой программы на Visual C#.">
+  
+  <title>Visual Studio C#: версия сборки приложения (Application Version Number) | pc | programming</title>
+  <link href="http://microsin.net/component/option,com_jcomments/format,raw/object_group,com_content/object_id,1427/task,rss/" rel="alternate" type="application/rss+xml" title="Visual Studio C#: версия сборки приложения (Application Version Number)">
+  <link rel="stylesheet" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/style.css" type="text/css">
+  <link rel="stylesheet" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/acesearch.css" type="text/css">
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/proofreader.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/xajax.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/jcomments-v2.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/ajax.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/mootools.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/caption.js"></script>
+  <script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/autocompleter12.js"></script>
+  <script language="JavaScript" type="text/javascript"><!-- // --><![CDATA[
+				function pr_setup() {
+					xajaxRequestUri='http://microsin.net/index.php?option=com_proofreader&task=sendmistake&tmpl=component';
+					xajaxWaitCursor=true;
+					xajaxDefinedPost=1;
+					xajaxDebug=false;
+					xajaxStatusMessages=false;
+					xajaxDefinedGet=0;
+				}
+
+			var xajaxRequestUri='http://microsin.net/index.php?option=com_proofreader&task=sendmistake&tmpl=component';
+			var xajaxWaitCursor=true;
+			var xajaxDefinedPost=1;
+			var xajaxDebug=false;
+			var xajaxStatusMessages=false;
+			var xajaxDefinedGet=0;
+
+			function addEventPR(obj, evType, fn){ 
+				 if (obj.addEventListener){ 
+					obj.addEventListener(evType, fn, false); 
+					return true; 
+				} else if (obj.attachEvent){
+					var r = obj.attachEvent("on"+evType, fn); 
+					return r; 
+				} else { 
+					return false; 
+				} 
+			}
+
+		 var pr_alt = false;  var pr_shift = true;  var pr_ctrl = false; 
+				var PReader_cur_page = "http://microsin.net/index.php?option=com_content&Itemid=44&catid=24&id=1427&lang=ru&view=article";
+				addEventPR(window, 'load',  addDivWindow);
+				addEventPR(window, 'load',  keyPressInit);
+			// ]]></script>
+  <script type="text/javascript">
+/*<![CDATA[*/
+	var jax_live_site = 'http://microsin.net/index.php';
+	var jax_site_type = '1.5';
+/*]]>*/
+</script><script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/ajax_1.js"></script>
+  <link rel="stylesheet" type="text/css" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/style_002.css">
+<link rel="stylesheet" type="text/css" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/comment_style.css">
+
+<script type="text/javascript">
+/*<![CDATA[*/
+var jc_option           = "";
+var jc_autoUpdate       = "0";
+var jc_update_period    = 300*1000;
+var jc_orderBy          = "1";
+var jc_livesite_busyImg = "http://microsin.net/components/com_jomcomment/busy.gif";
+var jc_username         = "";
+var jc_email            = "";
+var jc_commentForm;
+/*]]>*/
+</script>
+
+<link rel="stylesheet" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/system.css" type="text/css">
+<link rel="stylesheet" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/general.css" type="text/css">
+<link rel="stylesheet" href="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/template_css.css" type="text/css">
+<!-- <link rel="shortcut"   href="/templates/microsin/images/favicon16x16-8b.gif" type="image/x-icon"/> -->
+<link rel="shortcut icon" href="http://microsin.net/templates/microsin/images/favicon16x16-8b.gif">
+<meta http-equiv="Content-Language" content="en"></head>
+
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0">
+<a name="top" id="top"></a>
+  <table cellspacing="0" cellpadding="0" border="0" align="center" width="780">
+    <tbody><tr height="20">
+      <td>&nbsp;</td>
+      <td width="100%">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td background="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_left.gif" valign="top">
+      <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_top_left.gif" border="0" height="17" width="11"></td>
+      <td width="100%" valign="top">
+      <table cellspacing="1" border="0" bgcolor="#000000" width="100%">
+        <tbody><tr>
+          <td width="100%">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tbody><tr>
+                <td class="pathway" align="left" valign="center"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/arrow.png" hspace="5">
+                <span class="breadcrumbs pathway">
+<a href="http://microsin.net/programming/index.html" class="pathway">Программирование</a> <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/arrow.png" alt=""> <a href="http://microsin.net/programming/pc/index.html" class="pathway">PC</a> <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/arrow.png" alt=""> Visual Studio C#: версия сборки приложения (Application Version Number)</span>
+
+                </td>
+                <td class="pathway" align="right" valign="center">
+                Thu, October 05 2017&nbsp;&nbsp;</td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr height="80">
+          <td bgcolor="#54647A" background="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/logo_bar_logo.jpg" align="left" width="100%"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#AFC6DB" background="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/but_bar_back.gif" width="100%">
+
+          		<div class="moduletable_topmenu">
+					<table cellspacing="1" cellpadding="0" border="0" width="100%"><tbody><tr><td nowrap="nowrap"><span class="mainlevel">  | </span><a href="http://microsin.net/" class="mainlevel">Главная</a><span class="mainlevel">  | </span><a href="http://microsin.net/mycontacts.html" class="mainlevel">Контакты</a><span class="mainlevel">  | </span><a href="http://microsin.net/adminstuff/index.html" class="mainlevel">Администрирование</a><span class="mainlevel">  | </span><a href="http://microsin.net/programming/index.html" class="mainlevel" id="active_menu">Программирование</a><span class="mainlevel">  | </span><a href="http://microsin.net/Ssyilki/index.html" class="mainlevel">Ссылки</a><span class="mainlevel">  | </span></td></tr></tbody></table>		</div>
+	
+
+                    </td>
+        </tr>
+        <tr>
+          <td bgcolor="#FFFFFF" width="100%">
+          <table style="border-collapse: collapse" id="AutoNumber1" cellspacing="0" cellpadding="4" border="0" width="100%">
+            <tbody><tr>
+              <!-- LEFT Modules -->
+              
+                  <td bgcolor="#F0F0F0" width="150" valign="top">
+                    <div class="modules" style="width:155px;">
+                    		<div class="moduletable">
+					<table border="0">
+<tbody>
+<tr>
+<td><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/UK-flag-ico.png" alt="UK-flag-ico.png" title="English site version" border="0" align="bottom"></td>
+<td><a href="http://translate.google.ru/translate?hl=ru&amp;sl=ru&amp;tl=en&amp;u=http%3A%2F%2Fmicrosin.net%2F">English Version</a></td>
+</tr>
+<tr>
+<td><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/GERMAN-flag-ico.png" alt="GERMAN-flag-ico.png" title="Die deutsche Version der Webseite" border="0" align="bottom"></td>
+<td><a href="http://translate.google.ru/translate?hl=ru&amp;sl=ru&amp;tl=de&amp;u=http%3A%2F%2Fmicrosin.net%2F">Die deutsche Version</a></td>
+</tr>
+</tbody>
+</table>
+<a href="http://microsin.net/xmap-1.html">Карта сайта</a>		</div>
+			<div class="moduletable">
+					<h3>Поделиться</h3>
+					<!-- http://api.yandex.ru/share/ -->
+<script type="text/javascript" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/share.js" charset="utf-8"></script> <div class="yashare-auto-init" data-yasharel10n="ru" data-yasharetype="none" data-yasharequickservices="vkontakte,facebook,twitter,moimir,lj,yaru,friendfeed"></div>		</div>
+			<div class="moduletable">
+					<script type="text/javascript">
+		window.addEvent('load', function() {
+		var url = '/component/option,com_acesearch/format,raw/task,complete/';
+		var completer = new Autocompleter.Ajax.Json($('qr-10034'), url, {'postVar': 'q'});
+	});
+		
+	function acesearchsubmit(){
+		var moquery = document.getElementById("qr-10034").value.length;
+		
+		if (moquery >= "3"  ) {
+			return true;
+		} 
+		else {
+			alert("Пожалуйста убедитесь, что Ваш запрос длиннее, чем 3 символов.");
+			return false;
+		}
+	}
+</script>
+
+<form id="acesearchModule-10034" action="/component/option,com_acesearch/view,search/" method="post" name="acesearchModule" onsubmit="return acesearchsubmit();">
+	<div class="search acesearch_bg_module">
+		<input name="query" value="..." id="qr-10034" class="acesearch_input_module_modif" onblur="if(this.value=='') this.value='...';" onfocus="if(this.value=='...') this.value='';" style="margin-right:5px;" autocomplete="off" type="text"><a style="float:left;padding-left:5px;" href="http://microsin.net/component/option,com_acesearch/view,advancedsearch/" title="Расширенный поиск">Расширенный поиск</a><input name="lang" value="ru" type="hidden">	</div>
+	
+	<input name="option" value="com_acesearch" type="hidden">
+	<input name="view" value="search" type="hidden">
+	<input name="task" value="search" type="hidden">
+</form>
+<div class="acesearch_clear_mod_bottom"></div>		</div>
+			<div class="moduletable">
+					<h3>нашли опечатку?</h3>
+					Пожалуйста, сообщите об этом - просто выделите ошибочное слово или фразу и нажмите <b>Shift Enter</b>.		</div>
+			<div class="moduletable">
+					<br>
+<div align="center">
+  <script defer="defer" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/mi3co0dh.js"></script>
+  <div id="banner34er45tg56block"><a id="banner34er45tg56link" target="_blank" href="https://s.click.aliexpress.com/e/jiMbAMvfY?dp=microsinnet"><img id="banner34er45tg56" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/4.jpg"></a></div>
+</div>		</div>
+	
+<br> <!-- ��� ��� ������� �� ���������� ������ -->
+                    </div>
+                  </td>
+                                <td valign="top">
+              <!-- Top Modules -->
+                                          <div class="nopad"><table class="contentpaneopen">
+<tbody><tr>
+		<td class="contentheading" width="100%">
+					Visual Studio C#: версия сборки приложения (Application Version Number)			</td>
+				
+				<td class="buttonheading" align="right" width="100%">
+		<a href="http://microsin.net/programming/pc/c-sharp-application-version-number/Pechat.html" title="Печать" onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" rel="nofollow"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/printButton.png" alt="Печать"></a>		</td>
+		
+					</tr>
+</tbody></table>
+
+<table class="contentpaneopen">
+<tbody><tr>
+	<td valign="top">
+		<span class="small">
+			Добавил(а) microsin		</span>
+		&nbsp;&nbsp;
+	</td>
+</tr>
+
+
+
+<tr>
+<td valign="top">
+<p>По номеру версии удобно отслеживать изменения, которые произошли в программе, и сравнивать между собой релизы.&nbsp;</p>
+
+
+
+<p>[<strong>Как посмотреть и поменять версию программы во время разработки</strong>]&nbsp;</p>
+<p>Меню Проект -&gt; Свойства... -&gt; раздел Приложение -&gt; кнопка "Сведения о сборке..." -&gt; поле "Версия сборки".</p>
+<p><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/VSC-sharp-app-serial.PNG" alt="VSC-sharp-app-serial" style="vertical-align: bottom;" height="379" width="416"></p>
+<p>Эта информация хранится в файле Properties\AssemblyInfo.cs, см. 
+AssemblyVersion, поэтому версию можно просмотреть и поменять с помощью 
+текстового редактора.</p>
+<pre class="csharp" style="font-family: monospace;"><span style="color: #008080; font-style: italic;">// Можно задать все значения или принять номер построения и номер редакции по умолчанию, </span>
+<span style="color: #008080; font-style: italic;">// используя "*", как показано ниже:</span>
+<span style="color: #008080; font-style: italic;">// [assembly: AssemblyVersion("1.0.*")]</span>
+<span style="color: #000000;">[</span>assembly<span style="color: #008000;">:</span> AssemblyVersion<span style="color: #000000;">(</span><span style="color: #666666;">"1.0.0.0"</span><span style="color: #000000;">)</span><span style="color: #000000;">]</span>
+<span style="color: #000000;">[</span>assembly<span style="color: #008000;">:</span> AssemblyFileVersion<span style="color: #000000;">(</span><span style="color: #666666;">"1.0.0.0"</span><span style="color: #000000;">)</span><span style="color: #000000;">]</span></pre>
+<p>Номер версии состоит из четырех цифр: <strong>major</strong>.<strong>minor</strong>.<strong>build</strong>.<strong>revision</strong>
+ (главная.младшая.сборка.ревизия). По умолчанию версия установлена в 
+значение 1.0.0.0. Можно сделать так, чтобы числа build и revision 
+генерировались автоматически, для этого нужно поменять строку с 
+AssemblyVersion на 1.0.*.</p>
+<pre class="csharp" style="font-family: monospace;"><span style="color: #000000;">[</span>assembly<span style="color: #008000;">:</span> AssemblyVersion<span style="color: #000000;">(</span><span style="color: #666666;">"1.0.*"</span><span style="color: #000000;">)</span><span style="color: #000000;">]</span></pre>
+<p>После того, как такое изменение сделано, третья цифра, цифра сборки 
+(build), будет равна числу дней начиная с 1 января 2000 года по местному
+ времени. Четвертая цифра ревизии (revision) будет установлена в 
+количество секунд от полуночи по местному времени. Это очень удобно, 
+поскольку версия будет автоматически увеличиваться каждый раз при 
+перекомпилировании проекта. Если нужно контролировать эти цифры вручную 
+(например, при публикации официального релиза), в должны их установить в
+ нужное значение, например 1.4.7.6.</p>
+<p>Общепринятая для .NET методика установки цифр версии - значения major
+ и minor связаны со значительными изменениями в программе, а значения 
+build и revision - с незначительными. То есть версии, у которых 
+отличаются номера major и minor, считаются несовместимыми друг с другом,
+ а версии, у которых различаются только build и/или revision - 
+совместимыми.</p>
+<p>[<strong>Как получить версию программы во время выполнения</strong>]</p>
+<pre class="csharp" style="font-family: monospace;"><span style="color: #ff0000;">String</span> strVersion <span style="color: #008000;">=</span> <span style="color: #000000;">System.<span style="color: #0000ff;">Reflection</span></span>.<span style="color: #0000ff;">Assembly</span>.<span style="color: #0000ff;">GetExecutingAssembly</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span>.<span style="color: #0000ff;">GetName</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span>.<span style="color: #0000ff;">Version</span>.<span style="color: #0000ff;">ToString</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span><span style="color: #008000;">;</span></pre></td>
+</tr>
+
+</tbody></table>
+<span class="article_separator">&nbsp;</span>
+<script type="text/javascript">
+<!--
+var jcomments=new JComments(1427, 'com_content','/index.php?option=com_jcomments&amp;tmpl=component');
+jcomments.setList('comments-list');
+//-->
+</script>
+<div id="jc">
+<div id="comments"></div>
+<h4>Добавить комментарий</h4>
+<a id="addcomments" href="#addcomments"></a>
+<form id="comments-form" name="comments-form" action="javascript:void(null);">
+<p>
+	<input id="comments-form-name" name="name" maxlength="20" size="22" tabindex="1" type="text">
+	<label for="comments-form-name">Имя (обязательное)</label>
+</p>
+<p>
+	<input id="comments-form-email" name="email" size="22" tabindex="2" type="text">
+	<label for="comments-form-email">E-Mail (обязательное)</label>
+</p>
+<p>
+	<input id="comments-form-homepage" name="homepage" size="22" tabindex="3" type="text">
+	<label for="comments-form-homepage">Сайт</label>
+</p>
+<p>
+	<div class="smiles"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/laugh.gif" alt=":D" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/lol.gif" alt=":lol:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/smile.gif" alt=":-)" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/wink.gif" alt=";-)" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/cool.gif" alt="8)" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/normal.gif" alt=":-|" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/whistling.gif" alt=":-*" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/redface.gif" alt=":oops:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/sad.gif" alt=":sad:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/cry.gif" alt=":cry:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/surprised.gif" alt=":o" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/confused.gif" alt=":-?" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/sick.gif" alt=":-x" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shocked.gif" alt=":eek:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/sleeping.gif" alt=":zzz" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/tongue.gif" alt=":P" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/rolleyes.gif" alt=":roll:" class="smile"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/unsure.gif" alt=":sigh:" class="smile"></div><textarea id="comments-form-comment" name="comment" cols="65" rows="8" tabindex="5"></textarea><div class="grippie"><span class="counter">Осталось: <span>1000</span>  символов</span></div>
+</p>
+<p>
+	<input class="checkbox" id="comments-form-subscribe" name="subscribe" value="1" tabindex="5" type="checkbox">
+	<label for="comments-form-subscribe">Подписаться на уведомления о новых комментариях</label><br>
+</p>
+<p>
+	<img class="captcha" onclick="jcomments.clear('captcha');" id="comments-form-captcha-image" name="captcha-image" src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/index.jpeg" alt="Защитный код" height="60" width="121"><br>
+	<span class="captcha" onclick="jcomments.clear('captcha');">Обновить</span><br>
+	<input class="captcha" id="comments-form-captcha" name="captcha-refid" size="5" tabindex="6" type="text"><br>
+</p>
+<div id="comments-form-buttons">
+	<div class="btn" id="comments-form-send"><div><a href="#" tabindex="7" onclick="jcomments.saveComment();return false;" title="Отправить (Ctrl+Enter)">Отправить</a></div></div>
+	<div class="btn" id="comments-form-cancel" style="display:none;"><div><a href="#" tabindex="8" onclick="return false;" title="Отменить">Отменить</a></div></div>
+	<div style="clear:both;"></div>
+</div>
+	<input name="object_id" value="1427" type="hidden">
+	<input name="object_group" value="com_content" type="hidden">
+</form>
+<script type="text/javascript">
+<!--
+function JCommentsInitializeForm()
+{
+	var jcEditor = new JCommentsEditor('comments-form-comment', true);
+	jcEditor.initSmiles('http://microsin.net/components/com_jcomments/images/smiles');
+	jcEditor.addSmile(':D','laugh.gif');
+	jcEditor.addSmile(':lol:','lol.gif');
+	jcEditor.addSmile(':-)','smile.gif');
+	jcEditor.addSmile(';-)','wink.gif');
+	jcEditor.addSmile('8)','cool.gif');
+	jcEditor.addSmile(':-|','normal.gif');
+	jcEditor.addSmile(':-*','whistling.gif');
+	jcEditor.addSmile(':oops:','redface.gif');
+	jcEditor.addSmile(':sad:','sad.gif');
+	jcEditor.addSmile(':cry:','cry.gif');
+	jcEditor.addSmile(':o','surprised.gif');
+	jcEditor.addSmile(':-?','confused.gif');
+	jcEditor.addSmile(':-x','sick.gif');
+	jcEditor.addSmile(':eek:','shocked.gif');
+	jcEditor.addSmile(':zzz','sleeping.gif');
+	jcEditor.addSmile(':P','tongue.gif');
+	jcEditor.addSmile(':roll:','rolleyes.gif');
+	jcEditor.addSmile(':sigh:','unsure.gif');
+	jcEditor.addCounter(1000, 'Осталось:', ' символов', 'counter');
+	jcomments.setForm(new JCommentsForm('comments-form', jcEditor));
+}
+
+if (window.addEventListener) {window.addEventListener('load',JCommentsInitializeForm,false);}
+else if (document.addEventListener){document.addEventListener('load',JCommentsInitializeForm,false);}
+else if (window.attachEvent){window.attachEvent('onload',JCommentsInitializeForm);}
+else {if (typeof window.onload=='function'){var oldload=window.onload;window.onload=function(){oldload();JCommentsInitializeForm();}} else window.onload=JCommentsInitializeForm;} 
+//-->
+</script>
+<div id="comments-footer" align="center"><a href="http://www.joomlatune.ru/" title="JComments" target="_blank">JComments</a></div>
+</div></div>
+              <!-- Bottom Modules -->
+                            </td>
+              <!-- RIGHT Modules -->
+              
+            </tr>
+          </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      </td>
+      <td background="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_right.gif" valign="top">
+      <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_top_right.gif" border="0" height="17" width="11"></td>
+    </tr>
+    <tr>
+      <td><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_bottom_left.gif" border="0" height="19" width="11"></td>
+      <td background="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_bottom.gif" width="100%">
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tbody><tr>
+          <td>
+          <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_bottom_inner_left.gif" border="0" height="19" width="19"></td>
+          <td align="left"><a href="#top"><img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/top_of_page.gif" alt="Top of Page" border="0" vspace="5"></a></td>
+          <td align="right" width="100%"><!--���������������� ��� ���������� ������ "File does not exist:
+           /home/microsig/public_html/images/poweredbyLong.gif"<img src="/images/poweredbyLong.gif" width="169" height="8" vspace="5" border="0" alt="Powered by Mambo Open Source">--></td>
+          <td>
+          <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_bottom_inner_right.gif" border="0" height="19" width="19"></td>
+        </tr>
+      </tbody></table>
+      </td>
+      <td>
+      <img src="Visual%20Studio%20C%23:%20%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D1%81%D0%B1%D0%BE%D1%80%D0%BA%D0%B8%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20(Application%20Version%20Number)%20|%20pc%20|%20programming_files/shad_bottom_right.gif" border="0" height="19" width="11"></td>
+    </tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="3" border="0" align="center" width="780">
+    <tbody><tr>
+      <td align="center">
+      
+                      </td>
+    </tr>
+  </tbody></table>
+
+
+
+<iframe src="https://s.click.aliexpress.com/e/yjq3vrZ?dp=microsinnet" id="ali" scrolling="no" style="display: none;" height="0" width="0"></iframe><div id="MistWindow" style="position: absolute; display: none; width: 375px; height: 380px; top: 50px; left: 50px; z-index: 999;"></div><ul class="autocompleter-choices" style="z-index: 1000; visibility: hidden; opacity: 0;"></ul></body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="description" content="With a few twists and turns, it's possible to use NuGet on Linux. Troubleshoot common errors that can occur when running NuGet on Mono.">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="canonical" href="http://headsigned.com/article/running-nuget-command-line-on-linux">
+	
+	<title>Running NuGet command-line on Linux</title>
+
+	<link href="Running%20NuGet%20command-line%20on%20Linux_files/css.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="Running%20NuGet%20command-line%20on%20Linux_files/font-awesome.css">
+	<link rel="stylesheet" href="Running%20NuGet%20command-line%20on%20Linux_files/bulma.css">
+			<link href="Running%20NuGet%20command-line%20on%20Linux_files/app.css" media="all" type="text/css" rel="stylesheet">
+	
+					
+				<script async="" src="Running%20NuGet%20command-line%20on%20Linux_files/analytics.js"></script><script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-39231842-1', 'auto');
+		  ga('require', 'displayfeatures');
+		  ga('send', 'pageview');
+		</script>
+	<script type="text/javascript" async="" src="Running%20NuGet%20command-line%20on%20Linux_files/embed.js"></script><link rel="preload" as="style" href="Running%20NuGet%20command-line%20on%20Linux_files/a_data/lounge.css"><link rel="preload" as="script" href="Running%20NuGet%20command-line%20on%20Linux_files/a_data/common.js"><link rel="preload" as="script" href="Running%20NuGet%20command-line%20on%20Linux_files/a_data/lounge.js"><link rel="preload" as="script" href="Running%20NuGet%20command-line%20on%20Linux_files/a_data/config.js"></head>
+<body>
+	<div class="container">
+		<nav class="navbar" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="http://headsigned.com/" title="Headsigned homepage."><h1 class="is-size-1 has-text-weight-bold">Headsigned</h1></a>
+				<a class="navbar-item is-hidden-desktop" href="https://github.com/headsigned/" title="Official GitHub page">
+					<span class="icon">
+						<i class="fa fa-lg fa-github"></i>
+					</span>
+				</a>
+			</div>
+			<div class="navbar-menu">
+				<div class="navbar-end">
+					<a class="navbar-item" href="https://github.com/headsigned/" title="Official GitHub page">
+						<span class="icon">
+							<i class="fa fa-lg fa-github"></i>
+						</span>
+						GitHub
+					</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+		<section class="hero is-dark">
+		<div class="hero-body">
+			<div class="container">
+				<h2 class="title">Running NuGet command-line on Linux</h2>
+				<h3 class="subtitle">Feb 24, 2013</h3>
+			</div>
+		</div>
+	</section>
+	<section class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column">
+					<div class="content">
+						<p>NuGet probably won't work out of the box if you are running on 
+Linux. However, it's possible with a few twists and turns. At the time 
+this article was written, current NuGet command-line version was 2.2. 
+Linux Mint 14.1 Mate x64 was used for testing.</p>
+<blockquote><strong>Note:</strong> There is a small quirk when using NuGet on Linux: it ignores output directory setting in your custom <strong>nuget.config</strong>, but you can use the <kbd>-o <em>directory</em></kbd> argument to specify the output directory.</blockquote>
+
+<h3>Steps</h3>
+<ol>
+	<li>Install <strong>mono-complete</strong> using software manager for your OS</li>
+	<li>Import Mozilla LXR certificates into Mono with <kbd>mozroots --import --sync</kbd></li>
+	<li>Download the <strong>NuGet.exe Command Line</strong> (not the bootstrapper) from the <a rel="nofollow" href="http://nuget.codeplex.com/releases">NuGet releases</a> page</li>
+	<li><a href="http://headsigned.com/download/running-nuget-command-line-on-linux/Microsoft.Build.zip">Download Microsoft.Build.dll</a> and copy it to the same directory as NuGet.exe.<br>(also found in Mono installation for Windows, under <strong>Program Files <em>(x86)</em>\Mono-<em>version</em>\lib\mono\4.0</strong>.)</li>	
+	<li>Run NuGet with specific runtime using <kbd>mono --runtime=v4.0 NuGet.exe</kbd></li>
+</ol>
+
+<h3>Troubleshooting</h3>
+<h4>Mscorlib.dll Error</h4>
+<p>Running <kbd>mono NuGet.exe</kbd> for the first time might output this error:</p>
+<pre><code class="no-highlight">The assembly mscorlib.dll was not found or could not be loaded.
+It should have been installed in the `/usr/lib/mono/2.0/mscorlib.dll' directory.</code></pre>
+
+<blockquote><strong>Solution: </strong>Install <strong>mono-complete</strong> using software manager for your OS.</blockquote>
+
+<h4>WebException Error</h4>
+<p>If running <kbd>mono NuGet.exe</kbd> outputs an error like the one below, certificates need to be imported into the Mono certificate store:</p>
+<pre><code class="no-highlight">NuGet bootstrapper 1.0.0.0
+Found NuGet.exe version 2.2.1.
+Downloading...
+
+Unhandled Exception: System.Net.WebException:
+Error getting response stream (Write: The authentication or decryption has failed.): SendFailure ---&gt;
+System.IO.IOException: The authentication or decryption has failed. ---&gt;
+Mono.Security.Protocol.Tls.TlsException: Invalid certificate received from server. Error code: 0xffffffff800b010a
+  at Mono.Security...(snip)</code></pre>
+
+<blockquote><strong>Solution: </strong>Import Mozilla certificates first with <kbd>mozroots --import --sync</kbd>.</blockquote>
+
+<h4>Unavailable Runtime Version Error</h4>
+<p>If running <kbd>mono NuGet.exe</kbd> outputs an error like the one below, you need to run it with a different runtime:</p>
+<pre><code class="no-highlight">WARNING: The runtime version supported by this application is unavailable.
+Using default runtime: v2.0.50727
+
+Unhandled Exception: System.TypeLoadException:
+Could not load type 'NuGet.Program' from assembly 'NuGet, Version=2.2.40207.9053, Culture=neutral, PublicKeyToken=null'.
+[ERROR] FATAL UNHANDLED EXCEPTION: System.TypeLoadException:
+Could not load type 'NuGet.Program' from assembly 'NuGet, Version=2.2.40207.9053, Culture=neutral, PublicKeyToken=null'.</code></pre>
+
+<blockquote><strong>Solution: </strong>Run with a different runtime using <kbd>mono --runtime=v4.0 NuGet.exe</kbd>.</blockquote>
+
+<h4>NuGet.Commands.ProjectFactory Error</h4>
+<p>If you see an error like the one below, you need to have <strong>Microsoft.Build.dll</strong> next to your <strong>NuGet.exe</strong>. This will probably be fixed in Mono 3.</p>
+<pre><code class="no-highlight">Could not load type 'NuGet.Commands.ProjectFactory' from assembly
+'NuGet, Version=2.2.40207.9053, Culture=neutral, PublicKeyToken=null'.</code></pre>
+
+<blockquote><strong>Solution: </strong><a href="http://headsigned.com/download/running-nuget-command-line-on-linux/Microsoft.Build.zip">Download Microsoft.Build.dll</a> and copy it next to <strong>NuGet.exe</strong>.</blockquote>					</div>
+					
+					<div>
+													<div id="disqus_thread"><iframe id="dsq-app5804" name="dsq-app5804" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 511px !important;" src="Running%20NuGet%20command-line%20on%20Linux_files/a.html" horizontalscrolling="no" verticalscrolling="no" frameborder="0" width="100%"></iframe></div>
+							<script type="text/javascript">
+								var disqus_shortname = 'headsigned';
+								var disqus_identifier = 'article_btWwfy56fN';
+								var disqus_title = 'Running NuGet command-line on Linux';
+								var disqus_url = 'http://headsigned.com/article/running-nuget-command-line-on-linux';
+
+								(function() {
+									var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+									(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+								})();
+							</script>
+							<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+							
+											</div>
+				
+				</div>
+			
+				<div class="column is-one-quarter">
+					<aside class="menu">
+						<p class="menu-label">Sponsored Ads</p>
+						<ul class="menu-list">
+							<li>
+																										<span class="ad small"></span>
+															</li>
+						</ul>
+
+												<p class="menu-label">Random articles</p>
+						<ul class="menu-list">
+															<li><a href="http://headsigned.com/article/integrating-stylecop-with-visual-studio-express" title="StyleCop is not directly supported in Visual Studio Express. However, it can still be integrated with a little bit of manual work.">Integrating StyleCop with Visual Studio Express</a></li>
+															<li><a href="http://headsigned.com/article/csharp-apache-thrift-demo" title="Demo application that shows how you can use the Apache Thrift server/client with C#, including auto-generating code from a .thrift file.">C# Apache Thrift Demo</a></li>
+													</ul>
+						
+																	</aside>
+				</div>
+			</div>
+		</div>	
+	</section>
+	<footer class="footer">
+		<div class="container">
+		<div class="content has-text-centered">
+			<p>Copyright © 2017 by <a href="https://plus.google.com/+DejanGeci?rel=author">Dejan Geci</a></p>
+			<p>
+				<a class="icon" href="https://github.com/headsigned/" title="Official GitHub page"><i class="fa fa-github"></i></a>
+				<a href="http://headsigned.com/articles.rss" title="Article RSS"><span class="icon"><i class="fa fa-feed"></i></span></a>
+			</p>
+		</div>
+		</div>
+	</footer>
+					
+	<script src="Running%20NuGet%20command-line%20on%20Linux_files/highlight.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+<iframe style="display: none;"></iframe></body></html>

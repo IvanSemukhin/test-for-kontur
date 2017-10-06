@@ -1,0 +1,118 @@
+.jcarousel-wrapper {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0;
+height: 1px;
+    position: relative;
+}
+
+/** Carousel **/
+
+.jcarousel {
+    margin-left: 70px;
+    max-height: 145px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 80%;
+}
+
+
+.jcarousel ul {
+    list-style: none outside none;
+    margin: 24px 0 0;
+    position: relative;
+    text-align: center;
+    width: 20000em;
+
+}
+
+.jcarousel li {
+    -moz-box-sizing: border-box;
+    float: left;
+    max-height: 121px !important;
+    text-align: center;
+    width: 133px !important;
+    z-index: 100;
+}
+
+.jcarousel img {
+    border: medium none !important;
+    height: 50px !important;
+    max-width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+/** Carousel Controls **/
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    height: 33px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 17px;
+}
+
+.jcarousel-control-prev {
+    background-image: url("../images/arrow_right.png");
+    left: 15px;
+	top: 143px;
+}
+
+.jcarousel-control-next {
+    background-image: url("../images/arrow_left.png");
+    right: 15px;
+    top: 143px;
+}
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    margin: 0;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+
+    background: #fff;
+    color: #4E443C;
+    border-radius: 10px;
+    text-indent: -9999px;
+
+    margin-right: 7px;
+
+
+    -webkit-box-shadow: 0 0 2px #4E443C;
+    -moz-box-shadow: 0 0 2px #4E443C;
+    box-shadow: 0 0 2px #4E443C;
+}
+
+.jcarousel-pagination a.active {
+    background: #4E443C;
+    color: #fff;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 0 2px #F0EFE7;
+    -moz-box-shadow: 0 0 2px #F0EFE7;
+    box-shadow: 0 0 2px #F0EFE7;
+}
+.jcarousel_t {
+    margin-left: 86px;
+    margin-top: 100px;
+    overflow: hidden;
+    position: absolute;
+    width: 80%;
+}
