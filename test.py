@@ -4,7 +4,9 @@ import time
 from func import *
 
 first = True
-current_heads = ""
+current_heads = dict()
+heads = dict()
+name_repo = ""
 heads_file_name = ".heads.bin"
 while True:
     if first:
@@ -23,7 +25,7 @@ while True:
             current_heads = pickle.load(to_load)
             # print("current_heads from bin = ", current_heads)
             to_load.close()
-            current_heads.clear()   # FOR DEBUG
+            # current_heads.clear()   # FOR DEBUG
         else:
             current_heads = log(branches, name_repo)
             # print("current_heads from func = ", current_heads)
@@ -38,5 +40,16 @@ while True:
         first = False
     else:
         print("NEXT:")
-        print("pull, get_diff, build, start, pack")
+        branches = remote_branch(name_repo)
+        add_to_track(branches, name_repo)
+        pull(name_repo)
+
+        new_heads = log(branches, name_repo)
+        output = open(heads_file_name, 'wb')
+        pickle.dump(new_heads, output, 4)
+        output.close()
+
+        modify_branch = diff(new_heads, heads)
+        build(modify_branch, name_repo, new_heads)
+
     time.sleep(int(param["DELAY"]))
