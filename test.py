@@ -1,4 +1,5 @@
 import time
+import copy
 # import os
 # import pickle
 from func import *
@@ -35,6 +36,7 @@ while True:
 
         heads = log(branches, name_repo)
         modify_branch = diff(heads, current_heads)
+        print("modify branch=", modify_branch)
         build(modify_branch, name_repo, heads)
 
         first = False
@@ -48,8 +50,12 @@ while True:
         output = open(heads_file_name, 'wb')
         pickle.dump(new_heads, output, 4)
         output.close()
-
+        print(heads, new_heads)
         modify_branch = diff(new_heads, heads)
+        print("modify branch=", modify_branch)
         build(modify_branch, name_repo, new_heads)
+        heads.clear()
+        heads = copy.deepcopy(new_heads)
+        new_heads.clear()
 
     time.sleep(int(param["DELAY"]))
