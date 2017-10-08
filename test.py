@@ -11,7 +11,7 @@ name_repo = ""
 heads_file_name = ".heads.bin"
 while True:
     if first:
-        print("First START:")
+        # print("First START:")
         name_repo = clone(param["URL"])
         # print(param)
         # print("name_repo= " + name_repo)
@@ -36,26 +36,24 @@ while True:
 
         heads = log(branches, name_repo)
         modify_branch = diff(heads, current_heads)
-        print("modify branch=", modify_branch)
         build(modify_branch, name_repo, heads)
 
         first = False
     else:
-        print("NEXT:")
+        print("STEP:")
         branches = remote_branch(name_repo)
         add_to_track(branches, name_repo)
         pull(name_repo)
 
         new_heads = log(branches, name_repo)
+        # print(new_heads)
         output = open(heads_file_name, 'wb')
         pickle.dump(new_heads, output, 4)
         output.close()
-        print(heads, new_heads)
         modify_branch = diff(new_heads, heads)
         print("modify branch=", modify_branch)
         build(modify_branch, name_repo, new_heads)
         heads.clear()
         heads = copy.deepcopy(new_heads)
         new_heads.clear()
-
     time.sleep(int(param["DELAY"]))

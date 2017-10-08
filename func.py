@@ -130,9 +130,10 @@ def add_to_track(branches, name_repo):
 
 def pull(name_repo):
     try:
-        result = subprocess.check_output(["git", "--git-dir", name_repo + "/.git", "pull"], stderr=subprocess.STDOUT)
+        # result = subprocess.check_output(["git", "--git-dir", name_repo + "/.git", "pull"], stderr=subprocess.STDOUT)
+        result = subprocess.check_output(["git", "pull"], stderr=subprocess.STDOUT, cwd=name_repo)
         # result = result.decode('UTF-8')
-        # print("result = ",result)
+        # print("result = ", result)
         return result
     except subprocess.CalledProcessError as e:
         result = str(e.output.decode('UTF-8'))  # Получить данные вывода исключения
@@ -161,6 +162,7 @@ def log(branches, name_repo):
                 author = result[1][:result[1].find("<")].replace("Author: ", "")
                 commit_and_author = (commit, author)
                 heads[elem] = commit_and_author
+                # print(heads[elem])
         except subprocess.CalledProcessError as e:
             result = str(e.output.decode('UTF-8'))  # Получить данные вывода исключения
             send_mail(log.__name__, param["EMAIL"], result)
@@ -169,6 +171,25 @@ def log(branches, name_repo):
 
 def checkout(branch, name_repo):
     # print("branch form checkout = ", branch)
+    try:
+        # subprocess.check_output(["git", "--git-dir", name_repo + "/.git", "checkout", branch],
+        #                         stderr=subprocess.STDOUT)
+        result = subprocess.check_output(["git", "checkout", branch], stderr=subprocess.STDOUT, cwd=name_repo)
+        # result = result.decode()
+        # # print(result)
+        pull(name_repo)
+    except subprocess.CalledProcessError as e:
+        result = str(e.output.decode('UTF-8'))  # Получить данные вывода исключения
+        send_mail(checkout.__name__, param["EMAIL"], result)
+
+
+def checkout_hr(branch, name_repo):
+    # print("branch form checkout = ", branch)
+    try:
+        subprocess.check_output(["git", "reset", "--hard"], stderr=subprocess.STDOUT, cwd=name_repo)
+    except subprocess.CalledProcessError as e:
+        result = str(e.output.decode('UTF-8'))  # Получить данные вывода исключения
+        send_mail(checkout.__name__, param["EMAIL"], result)
     try:
         # subprocess.check_output(["git", "--git-dir", name_repo + "/.git", "checkout", branch],
         #                         stderr=subprocess.STDOUT)
@@ -195,7 +216,7 @@ def build(branches, name_repo, heads):
     for elem in branches:   # каждый элемент: origin/master
         # print(elem)
         name_branch = elem.split("/")[1]
-        checkout(name_branch, name_repo)
+        checkout_hr(name_branch, name_repo)
         try:
             # print("OLOLO", r"/p:TargetFrameworkVersion=\"v4.5\"")
             # input()
@@ -208,7 +229,7 @@ def build(branches, name_repo, heads):
             if result.find("Build succeeded.") == -1:
                 raise subprocess.CalledProcessError(1, "xbuild /p:TargetFrameworkVersion=\"v4.5\"", result)
             else:
-                print("Build succeeded.")
+                print("Build succeeded for branch:", name_branch)
                 result = result[result.find("Target Build:"):]
                 left = result.find(name_repo)
                 right = result.find(".csproj")
@@ -270,7 +291,7 @@ def pack(identifier, version, description, commit_hash, author, name_app, name_r
                                 cwd=name_repo,
                                 stderr=subprocess.STDOUT,
                                 shell=True)
-        print("Successfully created package")
+        print("Create package successfully")
     except subprocess.CalledProcessError as e:
         result = str(e.output)
         send_mail(pack.__name__, param["EMAIL"], result)
